@@ -1,8 +1,20 @@
 package com.springweb.firstwebapp.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class StaffModel {
+
+
     private int staffId;
+
+    @NotBlank(message = "Null Value not accepted")
+    @Size(min=3, max=5, message="This is name filed is minimum 3 charater and maximum 5 character")
     private String staffName;
+
+
+
     private String staffQualifaction;
     private String staffDepartment;
     private String staffAddress;

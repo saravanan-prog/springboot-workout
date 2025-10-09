@@ -1,7 +1,11 @@
 package com.springweb.firstwebapp.controller;
 import com.springweb.firstwebapp.model.StaffModel;
 import com.springweb.firstwebapp.service.StaffService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,12 +18,13 @@ public class StaffController {
 
     @GetMapping("getAllStaffList")
 
-    public List<StaffModel> listallStaffs(
+    public  ResponseEntity<List<StaffModel>> listallStaffs(
             @RequestHeader("token") String token
     ){
         if(token.equals("saravanan-security-api")){
             System.out.println("True block");
-            return this.serviceobj.getStaffList();
+            //return this.serviceobj.getStaffList();
+            return new ResponseEntity<>(this.serviceobj.getStaffList(),HttpStatus.ACCEPTED);
         }
         else{
             return null;
@@ -28,10 +33,11 @@ public class StaffController {
     }
 
     @PostMapping("addStaff")
-    public String addStaffList(
-            @RequestBody StaffModel staffPayload
+    public ResponseEntity<String>  addStaffList(
+           @Valid @RequestBody StaffModel staffPayload
     ){
-        return this.serviceobj.addStaffList(staffPayload);
+        //return this.serviceobj.addStaffList(staffPayload);
+        return new ResponseEntity<>(this.serviceobj.addStaffList(staffPayload), HttpStatus.CREATED);
     }
 
     @PutMapping("modifyStaff/{id}")
@@ -54,7 +60,7 @@ public class StaffController {
 
 
     @DeleteMapping("/recordDelete/{id}")
-    public String removeStaffDetail(
+    public List<StaffModel> removeStaffDetail(
             @PathVariable long id
     ){
 

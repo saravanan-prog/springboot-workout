@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 @Service
 public class StaffService {
 
-    List<StaffModel> staff = new ArrayList<StaffModel>();
+    List<StaffModel> staff = new ArrayList<>();
 
     public StaffService(){
-        staff = Arrays.asList(
-                new StaffModel(1,"Raja","MCA","IT","chennai",100000),
-                new StaffModel(2,"kamal","B.tech","IT","Bangalore",10000),
-                new StaffModel(3,"Rishab","B.tech","IT","Mumbai",250000)
-        );
+            //        staff = Arrays.asList(
+            //                new StaffModel(1,"Raja","MCA","IT","chennai",100000),
+            //                new StaffModel(2,"kamal","B.tech","IT","Bangalore",10000),
+            //                new StaffModel(3,"Rishab","B.tech","IT","Mumbai",250000)
+            //        );
     }
 
     public List<StaffModel> getStaffList(){
@@ -30,6 +30,8 @@ public class StaffService {
     }
 
     public String addStaffList(StaffModel staffPayload){
+
+        System.out.println(staffPayload.getStaffName());
         staff.add(staffPayload);
         return "Staff detail added successfully";
     }
@@ -82,14 +84,15 @@ public class StaffService {
         return "ID Not found";
     }
 
-    public String removeStaff(long id){
+    public List<StaffModel> removeStaff(long id){
 
-        boolean isDeleted = staff
-                .removeIf(item -> item != null && Objects.equals(item.getStaffId(),id));
+        List<StaffModel> newStaff =  staff.stream()
+                .filter(item->item.getStaffId() != id)
+                .collect(Collectors.toList());
 
-        System.out.println(isDeleted);
+        staff = newStaff;
 
-        return isDeleted ? "Staff Details Removed successfully" : "ID Not Found";
+        return staff;
     }
 
 
