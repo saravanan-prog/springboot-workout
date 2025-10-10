@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/staff/")
 public class StaffController {
@@ -19,16 +19,12 @@ public class StaffController {
     @GetMapping("getAllStaffList")
 
     public  ResponseEntity<List<StaffModel>> listallStaffs(
-            @RequestHeader("token") String token
     ){
-        if(token.equals("saravanan-security-api")){
+
             System.out.println("True block");
             //return this.serviceobj.getStaffList();
             return new ResponseEntity<>(this.serviceobj.getStaffList(),HttpStatus.ACCEPTED);
-        }
-        else{
-            return null;
-        }
+
 
     }
 

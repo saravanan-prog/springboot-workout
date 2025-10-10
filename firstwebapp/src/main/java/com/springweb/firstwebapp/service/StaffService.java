@@ -17,11 +17,11 @@ public class StaffService {
     List<StaffModel> staff = new ArrayList<>();
 
     public StaffService(){
-            //        staff = Arrays.asList(
-            //                new StaffModel(1,"Raja","MCA","IT","chennai",100000),
-            //                new StaffModel(2,"kamal","B.tech","IT","Bangalore",10000),
-            //                new StaffModel(3,"Rishab","B.tech","IT","Mumbai",250000)
-            //        );
+                    staff = Arrays.asList(
+                            new StaffModel(1,"Raja","MCA","IT","chennai",100000),
+                            new StaffModel(2,"kamal","B.tech","IT","Bangalore",10000),
+                            new StaffModel(3,"Rishab","B.tech","IT","Mumbai",250000)
+                    );
     }
 
     public List<StaffModel> getStaffList(){
