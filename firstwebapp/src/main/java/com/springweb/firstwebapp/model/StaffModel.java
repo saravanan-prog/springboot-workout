@@ -1,13 +1,15 @@
 package com.springweb.firstwebapp.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+
+
 public class StaffModel {
 
-
-    private int staffId;
+    private Long staffId;
 
     @NotBlank(message = "Null Value not accepted")
     @Size(min=3, max=5, message="This is name filed is minimum 3 charater and maximum 5 character")
@@ -20,7 +22,7 @@ public class StaffModel {
     private String staffAddress;
     private int staffSalary;
 
-    public StaffModel(int staffId, String staffName, String staffQualifaction, String staffDepartment, String staffAddress, int staffSalary) {
+    public StaffModel(Long staffId, String staffName, String staffQualifaction, String staffDepartment, String staffAddress, int staffSalary) {
         this.staffId = staffId;
         this.staffName = staffName;
         this.staffQualifaction = staffQualifaction;
@@ -29,11 +31,14 @@ public class StaffModel {
         this.staffSalary = staffSalary;
     }
 
-    public int getStaffId() {
+    public StaffModel() {
+    }
+
+    public Long getStaffId() {
         return staffId;
     }
 
-    public void setStaffId(int staffId) {
+    public void setStaffId(Long staffId) {
         this.staffId = staffId;
     }
 

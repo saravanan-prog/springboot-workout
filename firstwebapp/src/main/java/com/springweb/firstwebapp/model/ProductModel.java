@@ -1,9 +1,12 @@
 package com.springweb.firstwebapp.model;
 
+import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
 
 public class ProductModel {
+
+    private int id;
     private String productName;
     private int productPrice;
     private int totalQty;
@@ -12,6 +15,9 @@ public class ProductModel {
         this.productName = productName;
         this.productPrice = productPrice;
         this.totalQty = totalQty;
+    }
+
+    public ProductModel() {
     }
 
 

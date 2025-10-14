@@ -1,6 +1,7 @@
 package com.springweb.firstwebapp.service;
 
 import com.springweb.firstwebapp.model.StaffModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Array;
@@ -18,15 +19,16 @@ public class StaffService {
 
     public StaffService(){
                     staff = Arrays.asList(
-                            new StaffModel(1,"Raja","MCA","IT","chennai",100000),
-                            new StaffModel(2,"kamal","B.tech","IT","Bangalore",10000),
-                            new StaffModel(3,"Rishab","B.tech","IT","Mumbai",250000)
+                            new StaffModel(1L,"Raja","MCA","IT","chennai",100000),
+                            new StaffModel(2L,"kamal","B.tech","IT","Bangalore",10000),
+                            new StaffModel(3L,"Rishab","B.tech","IT","Mumbai",250000)
                     );
     }
 
     public List<StaffModel> getStaffList(){
         System.out.println("Service method is invoked");
         return staff;
+
     }
 
     public String addStaffList(StaffModel staffPayload){
