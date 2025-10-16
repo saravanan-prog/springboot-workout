@@ -1,12 +1,13 @@
 package com.springweb.firstwebapp.controller;
 
+import com.springweb.firstwebapp.Entities.StudentEntity;
 import com.springweb.firstwebapp.model.StudentDTO;
 import com.springweb.firstwebapp.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
@@ -19,17 +20,28 @@ public class StudentController {
     private StudentService studentservice;
 
     @GetMapping("showAllStudents")
-    public List<StudentDTO> getAllStudent(){
-
-        return this.studentservice.getAllStudentList();
+    public List<StudentEntity> getAllStudent(){
+       return this.studentservice.getAllStudentList();
     }
 
     @GetMapping("searchbyid/{id}")
-    public StudentDTO studentsearchByID(
+    public ResponseEntity<StudentEntity>  studentsearchByID(
             @PathVariable long id
     ){
-        return this.studentservice.getStudentlistSearchByID(id);
+
+        return new ResponseEntity<>(this.studentservice.getStudentBasedonId(id), HttpStatus.ACCEPTED);
     }
+
+    @PostMapping("/addStudent")
+    public ResponseEntity<StudentEntity>  addNewStudent(
+           @Valid @RequestBody StudentEntity studentPayload
+    ){
+
+        return new ResponseEntity<>(this.studentservice.addNewstudentInList(studentPayload), HttpStatus.CREATED);
+    }
+
+
+
 
 
 }

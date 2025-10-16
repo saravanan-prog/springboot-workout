@@ -1,27 +1,24 @@
-package com.springweb.firstwebapp.model;
+package com.springweb.firstwebapp.Entities;
+
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
-
-public class StudentDTO {
-
+@Entity
+@Table(name="student")
+public class StudentEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message="First Name is Required")
     private String studentFirstName;
+    @NotBlank(message="Last Name is Required")
     private String studentLastName;
+    @NotBlank(message="Student Categeory is missing")
     private String studentCategory;
+    @NotBlank(message="Student Location is missing")
     private String studentLocation;
-
-
-
-    public StudentDTO() {
-    }
-
-    public StudentDTO(Long id, String studentFirstName, String studentLastName, String studentCategory, String studentLocation) {
-        this.id = id;
-        this.studentFirstName = studentFirstName;
-        this.studentLastName = studentLastName;
-        this.studentCategory = studentCategory;
-        this.studentLocation = studentLocation;
+    public StudentEntity() {
     }
 
     public Long getId() {
